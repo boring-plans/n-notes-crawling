@@ -20,7 +20,9 @@ BLOGS_JSON_FILENAME = 'blogs.json'
 
 def crawl() -> list[dict]:
     articles = []
-    for archive in tqdm.tqdm(ARCHIVES):
+    for archive in ARCHIVES:
+        print(f'\nCrawling {archive}..')
+
         response = requests.get(BASE_URL + archive)
         soup = BeautifulSoup(response.text, "html.parser")
 
@@ -62,7 +64,7 @@ def gen_rss(articles: list[dict]) -> None:
     directory = Path(DIST_DIR)
     directory.mkdir(exist_ok=True)
     with open(directory / RSS_FILENAME, 'w', encoding='utf-8') as f:
-        rss.write_xml(f)
+        rss.write_xml(f, encoding='utf-8')
 
 
 def gen_json(articles: list[dict]) -> None:

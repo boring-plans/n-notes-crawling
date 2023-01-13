@@ -1,6 +1,7 @@
 import os
 import datetime
 import json
+import time
 from pathlib import Path
 
 import schedule
@@ -84,6 +85,10 @@ def crawling_job():
 
 def schedule_job():
     schedule.every().day.at("23:59").do(crawling_job)
+
+    while True:
+        schedule.run_pending()
+        time.sleep(3.7)
 
 
 if __name__ == '__main__':

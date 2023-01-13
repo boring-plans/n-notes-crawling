@@ -1,0 +1,90 @@
+import os
+import datetime
+import json
+from pathlib import Path
+
+import schedule
+import PyRSS2Gen
+import requests
+import tqdm
+from bs4 import BeautifulSoup
+
+BASE_URL = 'https://n-notes.tkzt.cn'
+ARCHIVES = ['/notes', '/boring-plans', '/cheap-talks']
+MAX_ABSTRACT = 150
+DIST_DIR = 'dist'
+RSS_FILENAME = 'feed.xml'
+BLOGS_JSON_FILENAME = 'blogs.json'
+
+
+def crawl() -> list[dict]:
+    articles = []
+    for archive in tqdm.tqdm(ARCHIVES):
+        response = requests.get(BASE_URL + archive)
+        soup = BeautifulSoup(response.text, "html.parser")
+
+        for link in tqdm.tqdm(soup.find_all('a')):
+            href = link['href']
+            if href.startswith('/') and href.endswith('html'):
+                full_url = BASE_URL + href
+
+                _response = requests.get(full_url)
+                _soup = BeautifulSoup(_response.text, 'html.parser')
+
+                title = _soup.select_one('.vp-doc > h1')
+                content = ''.join(map(lambda p_elem: p_elem.text, _soup.select('main p')))
+                date = _soup.select_one('.info .info-text')
+
+                if title and content and date:
+                    articles.append({
+                        'title': title.text,
+                        'link': full_url,
+                        'description': (content[:MAX_ABSTRACT].strip() + '...')
+                        if len(content) > MAX_ABSTRACT else content,
+                        'pubDate': datetime.datetime(
+                            *map(lambda x: int(x), date.text.split('-'))
+                        ) if '-' in date.text else None,
+                        'guid': PyRSS2Gen.Guid(full_url)
+                    })
+    return articles
+
+
+def gen_rss(articles: list[dict]) -> None:
+    rss = PyRSS2Gen.RSS2(
+        title='N Notes',
+        description='以有涯隨無涯，殆已！已而為知者，殆而已矣！是的，这是一个博客网站。',
+        link=BASE_URL,
+        lastBuildDate=datetime.datetime.now(),
+        items=map(lambda a: PyRSS2Gen.RSSItem(**a), articles),
+    )
+
+    directory = Path(DIST_DIR)
+    directory.mkdir(exist_ok=True)
+    with open(directory / RSS_FILENAME, 'w', encoding='utf-8') as f:
+        rss.write_xml(f)
+
+
+def gen_json(articles: list[dict]) -> None:
+    directory = Path(DIST_DIR)
+    directory.mkdir(exist_ok=True)
+    with open(directory / BLOGS_JSON_FILENAME, 'w', encoding='utf-8') as f:
+        f.write(json.dumps(articles))
+
+
+def update_repo():
+    os.system('./update_repo.sh')
+
+
+def crawling_job():
+    articles = crawl()
+    gen_json(articles)
+    gen_rss(articles)
+    update_repo()
+
+
+def schedule_job():
+    schedule.every().day.at("23:59").do(crawling_job)
+
+
+if __name__ == '__main__':
+    schedule_job()

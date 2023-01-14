@@ -1,6 +1,7 @@
 import os
 import datetime
 import json
+import re
 import time
 from pathlib import Path
 
@@ -35,15 +36,14 @@ def crawl() -> list[dict]:
                 _soup = BeautifulSoup(_response.text, 'html.parser')
 
                 title = _soup.select_one('.vp-doc > h1')
-                content = ''.join(map(lambda p_elem: p_elem.text, _soup.select('main p')))
+                content = _soup.select_one('main')
                 date = _soup.select_one('.info .info-text')
 
                 if title and content and date:
                     articles.append({
-                        'title': title.text,
+                        'title': re.sub(r'\s#$', '', title.text),
                         'link': full_url,
-                        'description': (content[:MAX_ABSTRACT].strip() + '...')
-                        if len(content) > MAX_ABSTRACT else content,
+                        'description': content.prettify(),
                         'pubDate': datetime.datetime(
                             *map(lambda x: int(x), date.text.split('-'))
                         ) if '-' in date.text else None,
@@ -71,7 +71,12 @@ def gen_json(articles: list[dict]) -> None:
     directory = Path(DIST_DIR)
     directory.mkdir(exist_ok=True)
     with open(directory / BLOGS_JSON_FILENAME, 'w', encoding='utf-8') as f:
-        f.write(json.dumps(articles))
+        f.write(json.dumps(list(map(
+            lambda a: {
+                'title': a['title'],
+                'date': a['pubDate'].strftime('%Y-%m-%d') if a['pubDate'] else '舊時',
+                'link': a['link']
+            }, articles)), ensure_ascii=False))
 
 
 def update_repo():

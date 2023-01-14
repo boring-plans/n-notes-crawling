@@ -74,7 +74,7 @@ def gen_json(articles: list[dict]) -> None:
         f.write(json.dumps(list(map(
             lambda a: {
                 'title': a['title'],
-                'date': a['pubDate'].strftime('%Y-%m-%d') if a['pubDate'] else '舊時',
+                'date': a['pubDate'].strftime('%Y-%m-%d') if a['pubDate'] else '旧时',
                 'link': a['link']
             }, articles)), ensure_ascii=False))
 

@@ -94,7 +94,7 @@ def crawling_job():
 
 
 def schedule_job():
-    schedule.every().day.at("16:12").do(crawling_job)
+    schedule.every().day.at("16:16").do(crawling_job)
 
     while True:
         schedule.run_pending()

@@ -4,6 +4,7 @@ import json
 import re
 import time
 from pathlib import Path
+from typing import List
 
 import schedule
 import PyRSS2Gen
@@ -19,7 +20,7 @@ RSS_FILENAME = 'feed.xml'
 BLOGS_JSON_FILENAME = 'blogs.json'
 
 
-def crawl() -> list[dict]:
+def crawl() -> List[dict]:
     articles = []
     for archive in ARCHIVES:
         print(f'\nCrawling {archive}..')
@@ -52,7 +53,7 @@ def crawl() -> list[dict]:
     return articles
 
 
-def gen_rss(articles: list[dict]) -> None:
+def gen_rss(articles: List[dict]) -> None:
     rss = PyRSS2Gen.RSS2(
         title='N Notes',
         description='以有涯隨無涯，殆已！已而為知者，殆而已矣！是的，这是一个博客网站。',
@@ -67,7 +68,7 @@ def gen_rss(articles: list[dict]) -> None:
         rss.write_xml(f, encoding='utf-8')
 
 
-def gen_json(articles: list[dict]) -> None:
+def gen_json(articles: List[dict]) -> None:
     directory = Path(DIST_DIR)
     directory.mkdir(exist_ok=True)
     with open(directory / BLOGS_JSON_FILENAME, 'w', encoding='utf-8') as f:
@@ -91,7 +92,7 @@ def crawling_job():
 
 
 def schedule_job():
-    schedule.every().day.at("23:59").do(crawling_job)
+    schedule.every().day.at("15:52").do(crawling_job)
 
     while True:
         schedule.run_pending()

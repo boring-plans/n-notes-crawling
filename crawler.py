@@ -41,15 +41,17 @@ def crawl() -> List[dict]:
                 date = _soup.select_one('.info .info-text')
 
                 if title and content and date:
-                    articles.append({
-                        'title': re.sub(r'\s#$', '', title.text),
-                        'link': full_url,
-                        'description': content.prettify(),
-                        'pubDate': datetime.datetime(
-                            *map(lambda x: int(x), date.text.split('-'))
-                        ) if '-' in date.text else None,
-                        'guid': PyRSS2Gen.Guid(full_url)
-                    })
+                    title_text = re.sub(r'\s#$', '', title.text)
+                    if not any(map(lambda a: a['title']==title_text, articles)):
+                        articles.append({
+                            'title': title_text,
+                            'link': full_url,
+                            'description': content.prettify(),
+                            'pubDate': datetime.datetime(
+                                *map(lambda x: int(x), date.text.split('-'))
+                            ) if '-' in date.text else None,
+                            'guid': PyRSS2Gen.Guid(full_url)
+                        })
     return articles
 
 
@@ -92,7 +94,7 @@ def crawling_job():
 
 
 def schedule_job():
-    schedule.every().day.at("15:52").do(crawling_job)
+    schedule.every().day.at("16:12").do(crawling_job)
 
     while True:
         schedule.run_pending()

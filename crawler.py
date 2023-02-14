@@ -20,12 +20,26 @@ RSS_FILENAME = 'feed.xml'
 BLOGS_JSON_FILENAME = 'blogs.json'
 
 
+class proxy:
+    
+    def __enter__(self):
+        os.system('./start_proxy.sh')
+    
+    
+    def __exit__(self, *args):
+        os.system('./stop_proxy.sh')
+
+
 def crawl() -> List[dict]:
     articles = []
+    proxies = {
+        'http': 'http://127.0.0.1:7890',
+        'https': 'http://127.0.0.1:7890',
+    }
     for archive in ARCHIVES:
         print(f'\nCrawling {archive}..')
 
-        response = requests.get(BASE_URL + archive)
+        response = requests.get(BASE_URL + archive, proxies=proxies)
         soup = BeautifulSoup(response.text, "html.parser")
 
         for link in tqdm.tqdm(soup.find_all('a')):
@@ -33,7 +47,7 @@ def crawl() -> List[dict]:
             if href.startswith('/') and href.endswith('html'):
                 full_url = BASE_URL + href
 
-                _response = requests.get(full_url)
+                _response = requests.get(full_url, proxies=proxies)
                 _soup = BeautifulSoup(_response.text, 'html.parser')
 
                 title = _soup.select_one('.vp-doc > h1')
@@ -52,6 +66,7 @@ def crawl() -> List[dict]:
                             ) if '-' in date.text else None,
                             'guid': PyRSS2Gen.Guid(full_url)
                         })
+            time.sleep(1)
     return articles
 
 
@@ -83,19 +98,22 @@ def gen_json(articles: List[dict]) -> None:
 
 
 def update_repo():
+    time.sleep(3.7)
     os.system('./update_repo.sh')
 
 
 def crawling_job():
-    articles = crawl()
-    gen_json(articles)
-    gen_rss(articles)
-    update_repo()
+    with proxy():
+        articles = crawl()
+        gen_json(articles)
+        gen_rss(articles)
+        update_repo()
 
 
 def schedule_job():
-    schedule.every().day.at("16:16").do(crawling_job)
-
+    schedule.every().day.at("00:30").do(crawling_job)
+    print('Job initialized.')
+    
     while True:
         schedule.run_pending()
         time.sleep(3.7)

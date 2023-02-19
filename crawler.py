@@ -5,6 +5,7 @@ import re
 import time
 from pathlib import Path
 from typing import List
+import traceback
 
 import schedule
 import PyRSS2Gen
@@ -19,15 +20,17 @@ DIST_DIR = 'dist'
 RSS_FILENAME = 'feed.xml'
 BLOGS_JSON_FILENAME = 'blogs.json'
 
+retries = 0
+
 
 class proxy:
     
     def __enter__(self):
-        os.system('./start_proxy.sh')
+        os.system('/etc/clash/start.sh start')
     
     
     def __exit__(self, *args):
-        os.system('./stop_proxy.sh')
+        os.system('/etc/clash/start.sh stop')
 
 
 def crawl() -> List[dict]:
@@ -66,7 +69,7 @@ def crawl() -> List[dict]:
                             ) if '-' in date.text else None,
                             'guid': PyRSS2Gen.Guid(full_url)
                         })
-            time.sleep(1)
+            time.sleep(3.7)
     return articles
 
 
@@ -103,15 +106,27 @@ def update_repo():
 
 
 def crawling_job():
+    global retries
     with proxy():
-        articles = crawl()
-        gen_json(articles)
-        gen_rss(articles)
-        update_repo()
-
+        articles = None
+        while retries<=3:
+            try:
+                articles = crawl()
+                break
+            except:
+                traceback.print_exc()
+                retries += 1
+                time.sleep(10)
+        retries = 0
+        if articles:
+            gen_rss(articles)
+            gen_json(articles)
+            update_repo()
+        else:
+            print("Crawling job failed.")
 
 def schedule_job():
-    schedule.every().day.at("00:30").do(crawling_job)
+    schedule.every().day.at("16:30").do(crawling_job)
     print('Job initialized.')
     
     while True:

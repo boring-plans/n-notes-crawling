@@ -20,8 +20,6 @@ DIST_DIR = 'dist'
 RSS_FILENAME = 'feed.xml'
 BLOGS_JSON_FILENAME = 'blogs.json'
 
-retries = 0
-
 
 class proxy:
     
@@ -33,6 +31,21 @@ class proxy:
         os.system('/etc/clash/start.sh stop')
 
 
+def exec_with_retrying(fn, retry_times=3, retry_interval=3.7, message_when_error=''):
+    retrying = 0
+    result = None
+    while retrying<=retry_times:
+        try:
+            result = fn()
+            break
+        except:
+            print(message_when_error)
+            traceback.print_exc()
+            time.sleep(retry_interval)
+            retrying += 1
+    return result
+
+
 def crawl() -> List[dict]:
     articles = []
     proxies = {
@@ -42,34 +55,44 @@ def crawl() -> List[dict]:
     for archive in ARCHIVES:
         print(f'\nCrawling {archive}..')
 
-        response = requests.get(BASE_URL + archive, proxies=proxies)
-        soup = BeautifulSoup(response.text, "html.parser")
+        response = exec_with_retrying(
+            lambda :requests.get(BASE_URL + archive, proxies=proxies),
+            message_when_error=f'Failed to fetch {archive}'
+        )
 
-        for link in tqdm.tqdm(soup.find_all('a')):
-            href = link['href']
-            if href.startswith('/') and href.endswith('html'):
-                full_url = BASE_URL + href
+        if response:
+            soup = BeautifulSoup(response.text, "html.parser")
 
-                _response = requests.get(full_url, proxies=proxies)
-                _soup = BeautifulSoup(_response.text, 'html.parser')
+            for link in tqdm.tqdm(soup.find_all('a')):
+                href = link['href']
+                if href.startswith('/') and href.endswith('html'):
+                    full_url = BASE_URL + href
 
-                title = _soup.select_one('.vp-doc > h1')
-                content = _soup.select_one('main')
-                date = _soup.select_one('.info .info-text')
+                    _response = exec_with_retrying(
+                        lambda :requests.get(full_url, proxies=proxies),
+                        message_when_error=f'Failed to fetch {link}'
+                    )
 
-                if title and content and date:
-                    title_text = re.sub(r'\s#$', '', title.text)
-                    if not any(map(lambda a: a['title']==title_text, articles)):
-                        articles.append({
-                            'title': title_text,
-                            'link': full_url,
-                            'description': content.prettify(),
-                            'pubDate': datetime.datetime(
-                                *map(lambda x: int(x), date.text.split('-'))
-                            ) if '-' in date.text else None,
-                            'guid': PyRSS2Gen.Guid(full_url)
-                        })
-            time.sleep(3.7)
+                    if _response:
+                        _soup = BeautifulSoup(_response.text, 'html.parser')
+
+                        title = _soup.select_one('.vp-doc > h1')
+                        content = _soup.select_one('main')
+                        date = _soup.select_one('.info .info-text')
+
+                        if title and content and date:
+                            title_text = re.sub(r'\s#$', '', title.text)
+                            if not any(map(lambda a: a['title']==title_text, articles)):
+                                articles.append({
+                                    'title': title_text,
+                                    'link': full_url,
+                                    'description': content.prettify(),
+                                    'pubDate': datetime.datetime(
+                                        *map(lambda x: int(x), date.text.split('-'))
+                                    ) if '-' in date.text else None,
+                                    'guid': PyRSS2Gen.Guid(full_url)
+                                })
+                time.sleep(1.2)
     return articles
 
 
@@ -106,27 +129,17 @@ def update_repo():
 
 
 def crawling_job():
-    global retries
     with proxy():
-        articles = None
-        while retries<=3:
-            try:
-                articles = crawl()
-                break
-            except:
-                traceback.print_exc()
-                retries += 1
-                time.sleep(10)
-        retries = 0
+        articles = crawl()
         if articles:
             gen_rss(articles)
             gen_json(articles)
             update_repo()
         else:
-            print("Crawling job failed.")
+            print("Failed to crawl articles.")
 
 def schedule_job():
-    schedule.every().day.at("16:30").do(crawling_job)
+    schedule.every().day.at("00:02").do(crawling_job)
     print('Job initialized.')
     
     while True:

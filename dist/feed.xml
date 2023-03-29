@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>N Notes</title><link>https://n-notes.tkzt.cn</link><description>以有涯隨無涯，殆已！已而為知者，殆而已矣！是的，这是一个博客网站。</description><lastBuildDate>Wed, 29 Mar 2023 00:06:37 GMT</lastBuildDate><generator>PyRSS2Gen-1.1.0</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>一个被绿光笼罩的故事</title><link>https://n-notes.tkzt.cn/notes/what-doesnt-kill-me/a-green-story.html</link><description>&lt;main class="main" data-v-6bb6223b=""&gt;
+<rss version="2.0"><channel><title>N Notes</title><link>https://n-notes.tkzt.cn</link><description>以有涯隨無涯，殆已！已而為知者，殆而已矣！是的，这是一个博客网站。</description><lastBuildDate>Thu, 30 Mar 2023 00:09:49 GMT</lastBuildDate><generator>PyRSS2Gen-1.1.0</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>一个被绿光笼罩的故事</title><link>https://n-notes.tkzt.cn/notes/what-doesnt-kill-me/a-green-story.html</link><description>&lt;main class="main" data-v-6bb6223b=""&gt;
  &lt;div class="vp-doc _notes_what-doesnt-kill-me_a-green-story" data-v-6bb6223b="" style="position:relative;"&gt;
   &lt;div&gt;
    &lt;h2 id="废话" tabindex="-1"&gt;
@@ -2373,7 +2373,186 @@
   &lt;/div&gt;
  &lt;/div&gt;
 &lt;/main&gt;
-</description><guid isPermaLink="true">https://n-notes.tkzt.cn/notes/assorted-harvest/python-global-variable-import.html</guid><pubDate>Sat, 14 May 2022 00:00:00 GMT</pubDate></item><item><title>十种排序算法</title><link>https://n-notes.tkzt.cn/notes/basic-skills/ten-sorting-algorithms.html</link><description>&lt;main class="main" data-v-6bb6223b=""&gt;
+</description><guid isPermaLink="true">https://n-notes.tkzt.cn/notes/assorted-harvest/python-global-variable-import.html</guid><pubDate>Sat, 14 May 2022 00:00:00 GMT</pubDate></item><item><title>2022 掉落拾取一</title><link>https://n-notes.tkzt.cn/notes/assorted-harvest/230329_those-owing-for-a-great-long-time.html</link><description>&lt;main class="main" data-v-6bb6223b=""&gt;
+ &lt;div class="vp-doc _notes_assorted-harvest_230329_those-owing-for-a-great-long-time" data-v-6bb6223b="" style="position:relative;"&gt;
+  &lt;div&gt;
+   &lt;h2 id="前言" tabindex="-1"&gt;
+    前言
+    &lt;a aria-hidden="true" class="header-anchor" href="#前言"&gt;
+     #
+    &lt;/a&gt;
+   &lt;/h2&gt;
+   &lt;p&gt;
+    由于懒惰，从去年下半年到现在，WorkFlowy 里堆积了若干条
+    &lt;code&gt;
+     torecord
+    &lt;/code&gt;
+    项，是时候清掉它们了。
+   &lt;/p&gt;
+   &lt;h2 id="正文" tabindex="-1"&gt;
+    正文
+    &lt;a aria-hidden="true" class="header-anchor" href="#正文"&gt;
+     #
+    &lt;/a&gt;
+   &lt;/h2&gt;
+   &lt;h3 id="commit-convention" tabindex="-1"&gt;
+    Commit Convention
+    &lt;a aria-hidden="true" class="header-anchor" href="#commit-convention"&gt;
+     #
+    &lt;/a&gt;
+   &lt;/h3&gt;
+   &lt;p&gt;
+    规范具体参考
+    &lt;a href="https://www.conventionalcommits.org/" rel="noreferrer" target="_blank"&gt;
+     conventional-commits
+    &lt;/a&gt;
+    ，在此只罗列一些主要的提交类型：
+   &lt;/p&gt;
+   &lt;ul&gt;
+    &lt;li&gt;
+     feat: 新功能
+    &lt;/li&gt;
+    &lt;li&gt;
+     fix: 问题修复
+    &lt;/li&gt;
+    &lt;li&gt;
+     docs: 文档更新
+    &lt;/li&gt;
+    &lt;li&gt;
+     style: 样式更新（代码风格、组件等）
+    &lt;/li&gt;
+    &lt;li&gt;
+     refactor: 不影响功能的重构
+    &lt;/li&gt;
+    &lt;li&gt;
+     perf: 性能优化
+    &lt;/li&gt;
+    &lt;li&gt;
+     test: 测试相关
+    &lt;/li&gt;
+    &lt;li&gt;
+     build: 构建相关（以及依赖项更新）
+    &lt;/li&gt;
+    &lt;li&gt;
+     ci: 持续集成相关
+    &lt;/li&gt;
+    &lt;li&gt;
+     revert: 还原、回退
+    &lt;/li&gt;
+    &lt;li&gt;
+     chore: 其他
+    &lt;/li&gt;
+   &lt;/ul&gt;
+   &lt;h3 id="overflow-auto-遇上-display-flex" tabindex="-1"&gt;
+    overflow: auto 遇上 display: flex
+    &lt;a aria-hidden="true" class="header-anchor" href="#overflow-auto-遇上-display-flex"&gt;
+     #
+    &lt;/a&gt;
+   &lt;/h3&gt;
+   &lt;p&gt;
+    具体见这：
+   &lt;/p&gt;
+   &lt;iframe allowfullscreen="true" allowtransparency="true" frameborder="no" height="500" loading="lazy" scrolling="no" src="https://codepen.io/boring-plans/embed/oNPOeey?default-tab=html%2Cresult&amp;amp;theme-id=light" style="width:100%;" title="overflow-auto_flex_1"&gt;
+    See the Pen &amp;lt;a href="https://codepen.io/boring-plans/pen/oNPOeey"&amp;gt;
+  overflow-auto_flex_1&amp;lt;/a&amp;gt; by Allen Tao (&amp;lt;a href="https://codepen.io/boring-plans"&amp;gt;@boring-plans&amp;lt;/a&amp;gt;)
+  on &amp;lt;a href="https://codepen.io"&amp;gt;CodePen&amp;lt;/a&amp;gt;.
+   &lt;/iframe&gt;
+   &lt;p&gt;
+    可以看出，由于
+    &lt;strong&gt;
+     某些原因
+    &lt;/strong&gt;
+    首个
+    &lt;strong&gt;
+     inner
+    &lt;/strong&gt;
+    的一部分无法被显示，对此我们可以加一层嵌套，没有什么是一层嵌套解决不了的：
+   &lt;/p&gt;
+   &lt;iframe allowfullscreen="true" allowtransparency="true" frameborder="no" height="500" loading="lazy" scrolling="no" src="https://codepen.io/boring-plans/embed/KKxYvRg?default-tab=html%2Cresult&amp;amp;theme-id=light" style="width:100%;" title="overflow-auto_flex_2"&gt;
+    See the Pen &amp;lt;a href="https://codepen.io/boring-plans/pen/KKxYvRg"&amp;gt;
+  overflow-auto_flex_2&amp;lt;/a&amp;gt; by Allen Tao (&amp;lt;a href="https://codepen.io/boring-plans"&amp;gt;@boring-plans&amp;lt;/a&amp;gt;)
+  on &amp;lt;a href="https://codepen.io"&amp;gt;CodePen&amp;lt;/a&amp;gt;.
+   &lt;/iframe&gt;
+   &lt;p&gt;
+    时间过得很快，转眼你就要离开，正当你就要走时，你无意间给
+    &lt;strong&gt;
+     container
+    &lt;/strong&gt;
+    加了个
+    &lt;strong&gt;
+     padding
+    &lt;/strong&gt;
+    ，于是：
+   &lt;/p&gt;
+   &lt;iframe allowfullscreen="true" allowtransparency="true" frameborder="no" height="500" loading="lazy" scrolling="no" src="https://codepen.io/boring-plans/embed/BaOEdEo?default-tab=html%2Cresult&amp;amp;theme-id=light" style="width:100%;" title="overflow-auto_flex_3"&gt;
+    See the Pen &amp;lt;a href="https://codepen.io/boring-plans/pen/BaOEdEo"&amp;gt;
+  overflow-auto_flex_3&amp;lt;/a&amp;gt; by Allen Tao (&amp;lt;a href="https://codepen.io/boring-plans"&amp;gt;@boring-plans&amp;lt;/a&amp;gt;)
+  on &amp;lt;a href="https://codepen.io"&amp;gt;CodePen&amp;lt;/a&amp;gt;.
+   &lt;/iframe&gt;
+   &lt;p&gt;
+    F**k，这不是你要的滑板鞋！
+   &lt;/p&gt;
+   &lt;p&gt;
+    没有什么是一层嵌套解决不了的，如果有，那再给
+    &lt;strong&gt;
+     wrapper
+    &lt;/strong&gt;
+    加个固有宽度：
+   &lt;/p&gt;
+   &lt;iframe allowfullscreen="true" allowtransparency="true" frameborder="no" height="500" loading="lazy" scrolling="no" src="https://codepen.io/boring-plans/embed/GRXLMNp?default-tab=html%2Cresult&amp;amp;theme-id=light" style="width:100%;" title="overflow-auto_flex_4"&gt;
+    See the Pen &amp;lt;a href="https://codepen.io/boring-plans/pen/GRXLMNp"&amp;gt;
+  overflow-auto_flex_4&amp;lt;/a&amp;gt; by Allen Tao (&amp;lt;a href="https://codepen.io/boring-plans"&amp;gt;@boring-plans&amp;lt;/a&amp;gt;)
+  on &amp;lt;a href="https://codepen.io"&amp;gt;CodePen&amp;lt;/a&amp;gt;.
+   &lt;/iframe&gt;
+   &lt;p&gt;
+    这些奇妙现象可以从
+    &lt;a href="https://stackoverflow.com/questions/21515042/scrolling-a-flexbox-with-overflowing-content/21541021#21541021" rel="noreferrer" target="_blank"&gt;
+     这个回答
+    &lt;/a&gt;
+    感悟到一些端倪，但也只是感悟，只是端倪。F**k，CSS 真有意思。
+   &lt;/p&gt;
+   &lt;h3 id="display-flex-遇上-text-overflow-ellipsis" tabindex="-1"&gt;
+    display: flex 遇上 text-overflow: ellipsis
+    &lt;a aria-hidden="true" class="header-anchor" href="#display-flex-遇上-text-overflow-ellipsis"&gt;
+     #
+    &lt;/a&gt;
+   &lt;/h3&gt;
+   &lt;p&gt;
+    当一个
+    &lt;code&gt;
+     display: flex
+    &lt;/code&gt;
+    的元素设置
+    &lt;code&gt;
+     text-overflow: ellipsis
+    &lt;/code&gt;
+    时，我们期待看到的省略号没有出现：
+   &lt;/p&gt;
+   &lt;iframe allowfullscreen="true" allowtransparency="true" frameborder="no" height="300" loading="lazy" scrolling="no" src="https://codepen.io/boring-plans/embed/mdGgBGr?default-tab=html%2Cresult&amp;amp;theme-id=light" style="width:100%;" title="flex_ellipsis"&gt;
+    See the Pen &amp;lt;a href="https://codepen.io/boring-plans/pen/mdGgBGr"&amp;gt;
+  flex_ellipsis&amp;lt;/a&amp;gt; by Allen Tao (&amp;lt;a href="https://codepen.io/boring-plans"&amp;gt;@boring-plans&amp;lt;/a&amp;gt;)
+  on &amp;lt;a href="https://codepen.io"&amp;gt;CodePen&amp;lt;/a&amp;gt;.
+   &lt;/iframe&gt;
+   &lt;p&gt;
+    对此我们可以加一层嵌套，没有什么是一层嵌套解决不了的：
+   &lt;/p&gt;
+   &lt;iframe allowfullscreen="true" allowtransparency="true" frameborder="no" height="300" loading="lazy" scrolling="no" src="https://codepen.io/boring-plans/embed/poOBdRY?default-tab=html%2Cresult&amp;amp;theme-id=light" style="width:100%;" title="flex_ellipsis_1"&gt;
+    See the Pen &amp;lt;a href="https://codepen.io/boring-plans/pen/poOBdRY"&amp;gt;
+  flex_ellipsis_1&amp;lt;/a&amp;gt; by Allen Tao (&amp;lt;a href="https://codepen.io/boring-plans"&amp;gt;@boring-plans&amp;lt;/a&amp;gt;)
+  on &amp;lt;a href="https://codepen.io"&amp;gt;CodePen&amp;lt;/a&amp;gt;.
+   &lt;/iframe&gt;
+   &lt;h2 id="" tabindex="-1"&gt;
+    &lt;a aria-hidden="true" class="header-anchor" href="#"&gt;
+     #
+    &lt;/a&gt;
+   &lt;/h2&gt;
+   &lt;p&gt;
+    未完待续。
+   &lt;/p&gt;
+  &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/main&gt;
+</description><guid isPermaLink="true">https://n-notes.tkzt.cn/notes/assorted-harvest/230329_those-owing-for-a-great-long-time.html</guid><pubDate>Wed, 29 Mar 2023 00:00:00 GMT</pubDate></item><item><title>十种排序算法</title><link>https://n-notes.tkzt.cn/notes/basic-skills/ten-sorting-algorithms.html</link><description>&lt;main class="main" data-v-6bb6223b=""&gt;
  &lt;div class="vp-doc _notes_basic-skills_ten-sorting-algorithms" data-v-6bb6223b="" style="position:relative;"&gt;
   &lt;div&gt;
    &lt;h2 id="前言" tabindex="-1"&gt;

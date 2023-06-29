@@ -139,7 +139,7 @@ def crawling_job():
             print("Failed to crawl articles.")
 
 def schedule_job():
-    schedule.every().day.at("00:02").do(crawling_job)
+    schedule.every().day.at("12:54").do(crawling_job)
     print('Job initialized.')
     
     while True:

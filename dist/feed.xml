@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>N Notes</title><link>https://n-notes.tkzt.cn</link><description>以有涯隨無涯，殆已！已而為知者，殆而已矣！是的，这是一个博客网站。</description><lastBuildDate>Tue, 11 Jul 2023 00:36:13 GMT</lastBuildDate><generator>PyRSS2Gen-1.1.0</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>一个被绿光笼罩的故事</title><link>https://n-notes.tkzt.cn/notes/what-doesnt-kill-me/a-green-story.html</link><description>&lt;main class="main" data-v-c967ef46=""&gt;
+<rss version="2.0"><channel><title>N Notes</title><link>https://n-notes.tkzt.cn</link><description>以有涯隨無涯，殆已！已而為知者，殆而已矣！是的，这是一个博客网站。</description><lastBuildDate>Wed, 12 Jul 2023 00:05:58 GMT</lastBuildDate><generator>PyRSS2Gen-1.1.0</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>一个被绿光笼罩的故事</title><link>https://n-notes.tkzt.cn/notes/what-doesnt-kill-me/a-green-story.html</link><description>&lt;main class="main" data-v-c967ef46=""&gt;
  &lt;div class="vp-doc _notes_what-doesnt-kill-me_a-green-story" data-v-c967ef46="" style="position:relative;"&gt;
   &lt;div&gt;
    &lt;h2 id="废话" tabindex="-1"&gt;
@@ -1673,7 +1673,223 @@
   &lt;/div&gt;
  &lt;/div&gt;
 &lt;/main&gt;
-</description><guid isPermaLink="true">https://n-notes.tkzt.cn/notes/what-doesnt-kill-me/221024-miniprogram-canvas-export-img.html</guid><pubDate>Wed, 26 Oct 2022 00:00:00 GMT</pubDate></item><item><title>Python 依据对象某一属性去重</title><link>https://n-notes.tkzt.cn/notes/assorted-harvest/python-remove-repeat-according-to-certain-column.html</link><description>&lt;main class="main" data-v-c967ef46=""&gt;
+</description><guid isPermaLink="true">https://n-notes.tkzt.cn/notes/what-doesnt-kill-me/221024-miniprogram-canvas-export-img.html</guid><pubDate>Wed, 26 Oct 2022 00:00:00 GMT</pubDate></item><item><title>关于 nginx 中 root、alias、proxy_pass 请求的实际路径</title><link>https://n-notes.tkzt.cn/notes/assorted-harvest/nginx-root-alias-proxy_pass.html</link><description>&lt;main class="main" data-v-c967ef46=""&gt;
+ &lt;div class="vp-doc _notes_assorted-harvest_nginx-root-alias-proxy_pass" data-v-c967ef46="" style="position:relative;"&gt;
+  &lt;div&gt;
+   &lt;h2 id="前言" tabindex="-1"&gt;
+    前言
+    &lt;a aria-hidden="true" class="header-anchor" href="#前言"&gt;
+     #
+    &lt;/a&gt;
+   &lt;/h2&gt;
+   &lt;p&gt;
+    最近有和 nginx 作斗争，一些掉落如下。
+   &lt;/p&gt;
+   &lt;h3 id="root-与-alias" tabindex="-1"&gt;
+    root 与 alias
+    &lt;a aria-hidden="true" class="header-anchor" href="#root-与-alias"&gt;
+     #
+    &lt;/a&gt;
+   &lt;/h3&gt;
+   &lt;h4 id="当如下配置时" tabindex="-1"&gt;
+    当如下配置时：
+    &lt;a aria-hidden="true" class="header-anchor" href="#当如下配置时"&gt;
+     #
+    &lt;/a&gt;
+   &lt;/h4&gt;
+   &lt;div class="language-js"&gt;
+    &lt;button class="copy" title="Copy Code"&gt;
+    &lt;/button&gt;
+    &lt;span class="lang"&gt;
+     js
+    &lt;/span&gt;
+    &lt;pre class="shiki material-palenight"&gt;&lt;code&gt;&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;listen &lt;/span&gt;&lt;span style="color:#F78C6C;"&gt;1997&lt;/span&gt;&lt;span style="color:#89DDFF;"&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;location &lt;/span&gt;&lt;span style="color:#89DDFF;"&gt;/&lt;/span&gt;&lt;span style="color:#A6ACCD;"&gt;img &lt;/span&gt;&lt;span style="color:#89DDFF;"&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#F07178;"&gt;    &lt;/span&gt;&lt;span style="color:#A6ACCD;"&gt;root&lt;/span&gt;&lt;span style="color:#F07178;"&gt; &lt;/span&gt;&lt;span style="color:#A6ACCD;"&gt;img&lt;/span&gt;&lt;span style="color:#89DDFF;"&gt;/&lt;/span&gt;&lt;span style="color:#A6ACCD;"&gt;sky&lt;/span&gt;&lt;span style="color:#89DDFF;"&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#89DDFF;"&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+   &lt;/div&gt;
+   &lt;p&gt;
+    访问
+    &lt;code&gt;
+     http://ip:1997/img/morning.jpg
+    &lt;/code&gt;
+    ，其实访问
+    &lt;code&gt;
+     http://ip:1997/img/img/sky/morning.jpg
+    &lt;/code&gt;
+    。
+   &lt;/p&gt;
+   &lt;h4 id="而如下配置时" tabindex="-1"&gt;
+    而如下配置时：
+    &lt;a aria-hidden="true" class="header-anchor" href="#而如下配置时"&gt;
+     #
+    &lt;/a&gt;
+   &lt;/h4&gt;
+   &lt;div class="language-js"&gt;
+    &lt;button class="copy" title="Copy Code"&gt;
+    &lt;/button&gt;
+    &lt;span class="lang"&gt;
+     js
+    &lt;/span&gt;
+    &lt;pre class="shiki material-palenight"&gt;&lt;code&gt;&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;listen &lt;/span&gt;&lt;span style="color:#F78C6C;"&gt;1997&lt;/span&gt;&lt;span style="color:#89DDFF;"&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;location &lt;/span&gt;&lt;span style="color:#89DDFF;"&gt;/&lt;/span&gt;&lt;span style="color:#A6ACCD;"&gt;img &lt;/span&gt;&lt;span style="color:#89DDFF;"&gt;{&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#F07178;"&gt;    &lt;/span&gt;&lt;span style="color:#A6ACCD;"&gt;alias&lt;/span&gt;&lt;span style="color:#F07178;"&gt; &lt;/span&gt;&lt;span style="color:#A6ACCD;"&gt;img&lt;/span&gt;&lt;span style="color:#89DDFF;"&gt;/&lt;/span&gt;&lt;span style="color:#A6ACCD;"&gt;sky&lt;/span&gt;&lt;span style="color:#89DDFF;"&gt;;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#89DDFF;"&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+   &lt;/div&gt;
+   &lt;p&gt;
+    访问
+    &lt;code&gt;
+     http://ip:1997/img/morning.jpg
+    &lt;/code&gt;
+    ，其实访问
+    &lt;code&gt;
+     http://ip:1997/img/sky/morning.jpg
+    &lt;/code&gt;
+    。
+   &lt;/p&gt;
+   &lt;h3 id="proxy-pass" tabindex="-1"&gt;
+    proxy_pass
+    &lt;a aria-hidden="true" class="header-anchor" href="#proxy-pass"&gt;
+     #
+    &lt;/a&gt;
+   &lt;/h3&gt;
+   &lt;h4 id="当如下配置时-1" tabindex="-1"&gt;
+    当如下配置时：
+    &lt;a aria-hidden="true" class="header-anchor" href="#当如下配置时-1"&gt;
+     #
+    &lt;/a&gt;
+   &lt;/h4&gt;
+   &lt;div class="language-"&gt;
+    &lt;button class="copy" title="Copy Code"&gt;
+    &lt;/button&gt;
+    &lt;span class="lang"&gt;
+    &lt;/span&gt;
+    &lt;pre class="shiki material-palenight"&gt;&lt;code&gt;&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;listen 1997;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;location /img/sky {&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;    proxy_pass http://ip_another:port_another;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+   &lt;/div&gt;
+   &lt;p&gt;
+    访问
+    &lt;code&gt;
+     http://ip:1997/img/sky/morning.jpg
+    &lt;/code&gt;
+    ，代理到
+    &lt;code&gt;
+     http://ip_another:port_another/img/sky/morning.jpg
+    &lt;/code&gt;
+    。
+   &lt;/p&gt;
+   &lt;h4 id="当如下配置时-2" tabindex="-1"&gt;
+    当如下配置时：
+    &lt;a aria-hidden="true" class="header-anchor" href="#当如下配置时-2"&gt;
+     #
+    &lt;/a&gt;
+   &lt;/h4&gt;
+   &lt;div class="language-"&gt;
+    &lt;button class="copy" title="Copy Code"&gt;
+    &lt;/button&gt;
+    &lt;span class="lang"&gt;
+    &lt;/span&gt;
+    &lt;pre class="shiki material-palenight"&gt;&lt;code&gt;&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;listen 1997;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;location /img/sky {&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;    proxy_pass http://ip_another:port_another/;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+   &lt;/div&gt;
+   &lt;p&gt;
+    访问
+    &lt;code&gt;
+     http://ip:1997/img/sky/morning.jpg
+    &lt;/code&gt;
+    ，代理到
+    &lt;code&gt;
+     http://ip_another:port_another/morning.jpg
+    &lt;/code&gt;
+    。
+   &lt;/p&gt;
+   &lt;h4 id="而当如下配置时" tabindex="-1"&gt;
+    而当如下配置时：
+    &lt;a aria-hidden="true" class="header-anchor" href="#而当如下配置时"&gt;
+     #
+    &lt;/a&gt;
+   &lt;/h4&gt;
+   &lt;div class="language-"&gt;
+    &lt;button class="copy" title="Copy Code"&gt;
+    &lt;/button&gt;
+    &lt;span class="lang"&gt;
+    &lt;/span&gt;
+    &lt;pre class="shiki material-palenight"&gt;&lt;code&gt;&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;listen 1997;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;location /img/sky {&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;    proxy_pass http://ip_another:port_another/static/imgs/;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+   &lt;/div&gt;
+   &lt;p&gt;
+    访问
+    &lt;code&gt;
+     http://ip:1997/img/sky/morning.jpg
+    &lt;/code&gt;
+    ，其实访问
+    &lt;code&gt;
+     http://ip_another:port_another/static/imgs/morning.jpg
+    &lt;/code&gt;
+    。
+   &lt;/p&gt;
+   &lt;h4 id="而当如下配置时-1" tabindex="-1"&gt;
+    而当如下配置时：
+    &lt;a aria-hidden="true" class="header-anchor" href="#而当如下配置时-1"&gt;
+     #
+    &lt;/a&gt;
+   &lt;/h4&gt;
+   &lt;div class="language-"&gt;
+    &lt;button class="copy" title="Copy Code"&gt;
+    &lt;/button&gt;
+    &lt;span class="lang"&gt;
+    &lt;/span&gt;
+    &lt;pre class="shiki material-palenight"&gt;&lt;code&gt;&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;listen 1997;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;location /img/sky {&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;    proxy_pass http://ip_another:port_another/static/imgs;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;}&lt;/span&gt;&lt;/span&gt;
+&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+   &lt;/div&gt;
+   &lt;p&gt;
+    访问
+    &lt;code&gt;
+     http://ip:1997/img/sky/morning.jpg
+    &lt;/code&gt;
+    ，其实访问
+    &lt;code&gt;
+     http://ip_another:port_another/static/imgsmorning.jpg
+    &lt;/code&gt;
+    。
+   &lt;/p&gt;
+   &lt;h2 id="后语" tabindex="-1"&gt;
+    后语
+    &lt;a aria-hidden="true" class="header-anchor" href="#后语"&gt;
+     #
+    &lt;/a&gt;
+   &lt;/h2&gt;
+   &lt;p&gt;
+    带不带
+    &lt;code&gt;
+     /
+    &lt;/code&gt;
+    很重要。
+   &lt;/p&gt;
+  &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/main&gt;
+</description><guid isPermaLink="true">https://n-notes.tkzt.cn/notes/assorted-harvest/nginx-root-alias-proxy_pass.html</guid><pubDate>Tue, 07 Apr 2020 00:00:00 GMT</pubDate></item><item><title>Python 依据对象某一属性去重</title><link>https://n-notes.tkzt.cn/notes/assorted-harvest/python-remove-repeat-according-to-certain-column.html</link><description>&lt;main class="main" data-v-c967ef46=""&gt;
  &lt;div class="vp-doc _notes_assorted-harvest_python-remove-repeat-according-to-certain-column" data-v-c967ef46="" style="position:relative;"&gt;
   &lt;div&gt;
    &lt;h2 id="前言" tabindex="-1"&gt;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>N Notes</title><link>https://n-notes.tkzt.cn</link><description>以有涯隨無涯，殆已！已而為知者，殆而已矣！是的，这是一个博客网站。</description><lastBuildDate>Wed, 23 Aug 2023 00:06:14 GMT</lastBuildDate><generator>PyRSS2Gen-1.1.0</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>一个被绿光笼罩的故事</title><link>https://n-notes.tkzt.cn/notes/what-doesnt-kill-me/a-green-story.html</link><description>&lt;main class="main" data-v-c967ef46=""&gt;
+<rss version="2.0"><channel><title>N Notes</title><link>https://n-notes.tkzt.cn</link><description>以有涯隨無涯，殆已！已而為知者，殆而已矣！是的，这是一个博客网站。</description><lastBuildDate>Thu, 24 Aug 2023 00:06:28 GMT</lastBuildDate><generator>PyRSS2Gen-1.1.0</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>一个被绿光笼罩的故事</title><link>https://n-notes.tkzt.cn/notes/what-doesnt-kill-me/a-green-story.html</link><description>&lt;main class="main" data-v-c967ef46=""&gt;
  &lt;div class="vp-doc _notes_what-doesnt-kill-me_a-green-story" data-v-c967ef46="" style="position:relative;"&gt;
   &lt;div&gt;
    &lt;h2 id="废话" tabindex="-1"&gt;
@@ -15707,6 +15707,26 @@
     &lt;li&gt;
      &lt;a href="https://unocss.dev/" rel="noreferrer" target="_blank"&gt;
       UnoCSS
+     &lt;/a&gt;
+    &lt;/li&gt;
+   &lt;/ul&gt;
+   &lt;h2 id="links" tabindex="-1"&gt;
+    Links
+    &lt;a aria-hidden="true" class="header-anchor" href="#links"&gt;
+     #
+    &lt;/a&gt;
+   &lt;/h2&gt;
+   &lt;ul&gt;
+    &lt;li&gt;
+     a
+     &lt;a href="https://sjv.tkzt.cn/" rel="noreferrer" target="_blank"&gt;
+      DEMO
+     &lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+     the
+     &lt;a href="https://github.com/tkzt/vue-sjv" rel="noreferrer" target="_blank"&gt;
+      REPO
      &lt;/a&gt;
     &lt;/li&gt;
    &lt;/ul&gt;

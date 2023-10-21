@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>N Notes</title><link>https://n-notes.tkzt.cn</link><description>以有涯隨無涯，殆已！已而為知者，殆而已矣！是的，这是一个博客网站。</description><lastBuildDate>Sat, 21 Oct 2023 00:25:48 GMT</lastBuildDate><generator>PyRSS2Gen-1.1.0</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>一个被绿光笼罩的故事</title><link>https://n-notes.tkzt.cn/notes/what-doesnt-kill-me/a-green-story.html</link><description>&lt;main class="main" data-v-c967ef46=""&gt;
+<rss version="2.0"><channel><title>N Notes</title><link>https://n-notes.tkzt.cn</link><description>以有涯隨無涯，殆已！已而為知者，殆而已矣！是的，这是一个博客网站。</description><lastBuildDate>Sun, 22 Oct 2023 00:47:05 GMT</lastBuildDate><generator>PyRSS2Gen-1.1.0</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>一个被绿光笼罩的故事</title><link>https://n-notes.tkzt.cn/notes/what-doesnt-kill-me/a-green-story.html</link><description>&lt;main class="main" data-v-c967ef46=""&gt;
  &lt;div class="vp-doc _notes_what-doesnt-kill-me_a-green-story" data-v-c967ef46="" style="position:relative;"&gt;
   &lt;div&gt;
    &lt;h2 id="废话" tabindex="-1"&gt;
@@ -1993,77 +1993,7 @@
   &lt;/div&gt;
  &lt;/div&gt;
 &lt;/main&gt;
-</description><guid isPermaLink="true">https://n-notes.tkzt.cn/notes/assorted-harvest/python-remove-repeat-according-to-certain-column.html</guid><pubDate>Wed, 08 Apr 2020 00:00:00 GMT</pubDate></item><item><title>Python re.sub 仅替换匹配到内容中的一部分</title><link>https://n-notes.tkzt.cn/notes/assorted-harvest/python-replace-partial-matched.html</link><description>&lt;main class="main" data-v-c967ef46=""&gt;
- &lt;div class="vp-doc _notes_assorted-harvest_python-replace-partial-matched" data-v-c967ef46="" style="position:relative;"&gt;
-  &lt;div&gt;
-   &lt;h2 id="需求" tabindex="-1"&gt;
-    需求
-    &lt;a aria-hidden="true" class="header-anchor" href="#需求"&gt;
-     #
-    &lt;/a&gt;
-   &lt;/h2&gt;
-   &lt;p&gt;
-    最终实现的效果如下：
-   &lt;/p&gt;
-   &lt;p&gt;
-    替换
-   &lt;/p&gt;
-   &lt;div class="language-txt"&gt;
-    &lt;button class="copy" title="Copy Code"&gt;
-    &lt;/button&gt;
-    &lt;span class="lang"&gt;
-     txt
-    &lt;/span&gt;
-    &lt;pre class="shiki material-palenight"&gt;&lt;code&gt;&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;everything is alright.&lt;/span&gt;&lt;/span&gt;
-&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-   &lt;/div&gt;
-   &lt;p&gt;
-    为
-   &lt;/p&gt;
-   &lt;div class="language-txt"&gt;
-    &lt;button class="copy" title="Copy Code"&gt;
-    &lt;/button&gt;
-    &lt;span class="lang"&gt;
-     txt
-    &lt;/span&gt;
-    &lt;pre class="shiki material-palenight"&gt;&lt;code&gt;&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;everybody is alright.&lt;/span&gt;&lt;/span&gt;
-&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-   &lt;/div&gt;
-   &lt;h2 id="show-me-the-code" tabindex="-1"&gt;
-    Show Me The Code
-    &lt;a aria-hidden="true" class="header-anchor" href="#show-me-the-code"&gt;
-     #
-    &lt;/a&gt;
-   &lt;/h2&gt;
-   &lt;p&gt;
-    实现如下：
-   &lt;/p&gt;
-   &lt;div class="language-python"&gt;
-    &lt;button class="copy" title="Copy Code"&gt;
-    &lt;/button&gt;
-    &lt;span class="lang"&gt;
-     python
-    &lt;/span&gt;
-    &lt;pre class="shiki material-palenight"&gt;&lt;code&gt;&lt;span class="line"&gt;&lt;span style="color:#89DDFF;font-style:italic;"&gt;import&lt;/span&gt;&lt;span style="color:#A6ACCD;"&gt; re&lt;/span&gt;&lt;/span&gt;
-&lt;span class="line"&gt;&lt;/span&gt;
-&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;src &lt;/span&gt;&lt;span style="color:#89DDFF;"&gt;=&lt;/span&gt;&lt;span style="color:#A6ACCD;"&gt; &lt;/span&gt;&lt;span style="color:#89DDFF;"&gt;'&lt;/span&gt;&lt;span style="color:#C3E88D;"&gt;everything is alright.&lt;/span&gt;&lt;span style="color:#89DDFF;"&gt;'&lt;/span&gt;&lt;/span&gt;
-&lt;span class="line"&gt;&lt;/span&gt;
-&lt;span class="line"&gt;&lt;span style="color:#A6ACCD;"&gt;re&lt;/span&gt;&lt;span style="color:#89DDFF;"&gt;.&lt;/span&gt;&lt;span style="color:#82AAFF;"&gt;sub&lt;/span&gt;&lt;span style="color:#89DDFF;"&gt;(&lt;/span&gt;&lt;span style="color:#89DDFF;"&gt;'&lt;/span&gt;&lt;span style="color:#C3E88D;"&gt;(every).*?(&lt;/span&gt;&lt;span style="color:#A6ACCD;"&gt;\\&lt;/span&gt;&lt;span style="color:#C3E88D;"&gt;s.*&lt;/span&gt;&lt;span style="color:#A6ACCD;"&gt;\\&lt;/span&gt;&lt;span style="color:#C3E88D;"&gt;.)&lt;/span&gt;&lt;span style="color:#89DDFF;"&gt;'&lt;/span&gt;&lt;span style="color:#89DDFF;"&gt;,&lt;/span&gt;&lt;span style="color:#C792EA;"&gt;r&lt;/span&gt;&lt;span style="color:#89DDFF;"&gt;'&lt;/span&gt;&lt;span style="color:#F07178;"&gt;\1&lt;/span&gt;&lt;span style="color:#C3E88D;"&gt;body&lt;/span&gt;&lt;span style="color:#F07178;"&gt;\2&lt;/span&gt;&lt;span style="color:#89DDFF;"&gt;'&lt;/span&gt;&lt;span style="color:#89DDFF;"&gt;,&lt;/span&gt;&lt;span style="color:#82AAFF;"&gt;src&lt;/span&gt;&lt;span style="color:#89DDFF;"&gt;)&lt;/span&gt;&lt;span style="color:#A6ACCD;"&gt; &lt;/span&gt;&lt;span style="color:#676E95;font-style:italic;"&gt;# everybody is alright.&lt;/span&gt;&lt;/span&gt;
-&lt;span class="line"&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-   &lt;/div&gt;
-   &lt;h2 id="后语" tabindex="-1"&gt;
-    后语
-    &lt;a aria-hidden="true" class="header-anchor" href="#后语"&gt;
-     #
-    &lt;/a&gt;
-   &lt;/h2&gt;
-   &lt;p&gt;
-    就这。
-   &lt;/p&gt;
-  &lt;/div&gt;
- &lt;/div&gt;
-&lt;/main&gt;
-</description><guid isPermaLink="true">https://n-notes.tkzt.cn/notes/assorted-harvest/python-replace-partial-matched.html</guid><pubDate>Sat, 09 May 2020 00:00:00 GMT</pubDate></item><item><title>Github Pages Page Favicon 不显示解决</title><link>https://n-notes.tkzt.cn/notes/assorted-harvest/github-pages-favicon.html</link><description>&lt;main class="main" data-v-c967ef46=""&gt;
+</description><guid isPermaLink="true">https://n-notes.tkzt.cn/notes/assorted-harvest/python-remove-repeat-according-to-certain-column.html</guid><pubDate>Wed, 08 Apr 2020 00:00:00 GMT</pubDate></item><item><title>Github Pages Page Favicon 不显示解决</title><link>https://n-notes.tkzt.cn/notes/assorted-harvest/github-pages-favicon.html</link><description>&lt;main class="main" data-v-c967ef46=""&gt;
  &lt;div class="vp-doc _notes_assorted-harvest_github-pages-favicon" data-v-c967ef46="" style="position:relative;"&gt;
   &lt;div&gt;
    &lt;h2 id="概述" tabindex="-1"&gt;
